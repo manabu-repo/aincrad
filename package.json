@@ -1,0 +1,26 @@
+{
+  "name": "@use-kit/aincrad",
+  "version": "1.0.0",
+  "packageManager": "pnpm@8.3.1",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "clean": "rimraf packages/*/dist",
+    "cleanup": "rimraf 'packages/**/node_modules' 'playgrounds/**/node_modules' 'node_modules'",
+    "build": "pnpm -r --filter='./packages/*' run build",
+    "preinstall": "npx -y only-allow pnpm"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
+  "keywords": [
+    "yui"
+  ],
+  "author": "use-kit",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
