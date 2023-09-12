@@ -5,21 +5,20 @@
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {
-    "clean": "rimraf packages/*/dist",
-    "cleanup": "rimraf 'packages/**/node_modules' 'playgrounds/**/node_modules' 'node_modules'",
-    "build": "pnpm -r --filter='./packages/*' run build",
-    "preinstall": "npx -y only-allow pnpm"
-  },
+  "author": "use-kit",
+  "license": "Apache-2.0",
+  "keywords": [],
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
   },
-  "keywords": [
-    "yui"
-  ],
-  "author": "use-kit",
-  "license": "Apache-2.0",
+  "scripts": {
+    "clean": "rimraf packages/*/dist",
+    "cleanup": "rimraf 'packages/**/node_modules' 'playgrounds/**/node_modules' 'node_modules'",
+    "build": "pnpm -r --filter='./packages/*' run build",
+    "test": "pnpm -r --filter='./packages/*' run test",
+    "preinstall": "npx -y only-allow pnpm"
+  },
   "devDependencies": {
     "typescript": "^5.0.4"
   }
