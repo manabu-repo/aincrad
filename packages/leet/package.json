@@ -15,6 +15,7 @@
     "@antfu/ni": "^0.21.8",
     "@antfu/utils": "^0.7.6",
     "@types/node": "^18.17.15",
+    "@use-kit/functions": "^0.1.5",
     "@use-kit/node": "^0.0.1",
     "bumpp": "^9.2.0",
     "eslint": "^8.49.0",
