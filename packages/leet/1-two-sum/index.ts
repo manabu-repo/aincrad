@@ -1,3 +1,6 @@
+// 1-easy
+
+// 暴力解法
 // function twosum(nums: number[], target: number): number[] {
 //   const map: { [key: number]: number } = {};
 

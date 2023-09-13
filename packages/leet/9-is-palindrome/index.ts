@@ -1,3 +1,5 @@
+// 9-easy
+
 import { isEmpty } from '@use-kit/functions'
 
 export function isPalindromeString(str: string): boolean {

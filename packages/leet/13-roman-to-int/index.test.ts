@@ -26,7 +26,6 @@ describe('romanToInt', () => {
     expect(romanToInt('MMMCMXCIX')).toBe(3999)
   })
 
-
   it('works with roman numerals', () => {
     expect(romanToInt('III')).toMatchInlineSnapshot('3')
     expect(romanToInt('LVIII')).toMatchInlineSnapshot('58')
