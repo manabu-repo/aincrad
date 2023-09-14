@@ -31,5 +31,5 @@ export function reverse(x: number): number {
   )
     return 0
 
-  return x > 0 ? result : -result
+  return x >= 0 ? result : -result
 }
