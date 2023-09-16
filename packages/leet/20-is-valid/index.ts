@@ -1,3 +1,5 @@
+// 20-easy is valid brackets
+
 export function isValidBrackets(str: string): boolean {
   // valid string include '(', ')', '{', '}', '[', ']' and clos in the correct order
   // e.g. '{}', '()[]', '[()[]]'

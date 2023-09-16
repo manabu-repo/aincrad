@@ -1,4 +1,4 @@
-// 7-medium
+// 7-medium reverse number
 
 // export function reverse(arr: number[]): number[] {
 //   let left = 0;
