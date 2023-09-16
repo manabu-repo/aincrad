@@ -23,8 +23,8 @@ importers:
         specifier: ^18.17.15
         version: 18.17.15
       '@use-kit/functions':
-        specifier: ^0.1.5
-        version: 0.1.5
+        specifier: ^0.1.6
+        version: 0.1.6
       '@use-kit/node':
         specifier: ^0.0.1
         version: 0.0.1
@@ -1473,8 +1473,8 @@ packages:
       eslint-visitor-keys: 3.4.3
     dev: true
 
-  /@use-kit/functions@0.1.5:
-    resolution: {integrity: sha512-7NnSr9CSUBQZ/mfQyA1+UKNiHiG4qTUixdyPMR92N1wO4GtjDPSrLKoCWjdCP+9joximJ55+QQJozoW2Jmj1IQ==}
+  /@use-kit/functions@0.1.6:
+    resolution: {integrity: sha512-eX78H8LEIUOTZj3BklOznEhXjjttIf2zwputuCQWhoFM8Mpwk+PiSO+QhsA1CB61IExqxljPcGKYrCyvQuFOmw==}
     dependencies:
       dayjs: 1.11.9
       observer-emit: 1.0.1

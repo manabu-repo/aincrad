@@ -14,9 +14,9 @@ describe('isPalindromeString', () => {
     expect(isPalindromeString('')).toBe(false)
   })
 
-  // it('should return false for a string with only spaces', () => {
-  //   expect(isPalindromeString('   ')).toBe(false)
-  // })
+  it('should return false for a string with only spaces', () => {
+    expect(isPalindromeString('   ')).toBe(false)
+  })
 
   it('should return false for a string with non-alphanumeric characters', () => {
     expect(isPalindromeString('a*b')).toBe(false)
