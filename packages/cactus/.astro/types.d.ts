@@ -186,13 +186,6 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"draft-post.md": {
-	id: "draft-post.md";
-  slug: "draft-post";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
 "hello-world/index.mdx": {
 	id: "hello-world/index.mdx";
   slug: "hello-world";
@@ -200,37 +193,9 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"long-title.md": {
-	id: "long-title.md";
-  slug: "long-title";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
 "markdown-elements/index.md": {
 	id: "markdown-elements/index.md";
   slug: "markdown-elements";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
-"missing-content.md": {
-	id: "missing-content.md";
-  slug: "missing-content";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
-"second-post.md": {
-	id: "second-post.md";
-  slug: "second-post";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
-"social-image.md": {
-	id: "social-image.md";
-  slug: "social-image";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
