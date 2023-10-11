@@ -186,13 +186,6 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"hello-world/index.mdx": {
-	id: "hello-world/index.mdx";
-  slug: "hello-world";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] };
 "markdown-elements/index.md": {
 	id: "markdown-elements/index.md";
   slug: "markdown-elements";
@@ -200,6 +193,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"the-first-post/index.mdx": {
+	id: "the-first-post/index.mdx";
+  slug: "the-first-post";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 "unique-tags.md": {
 	id: "unique-tags.md";
   slug: "unique-tags";
