@@ -179,26 +179,42 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"post": {
+"1-two-sum/index.md": {
+	id: "1-two-sum/index.md";
+  slug: "1-two-sum";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+"9-is-palindrome/index.md": {
+	id: "9-is-palindrome/index.md";
+  slug: "9-is-palindrome";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
+};
+"post-default": {
 "cover-image/index.md": {
 	id: "cover-image/index.md";
   slug: "cover-image";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "post-default";
+  data: any
 } & { render(): Render[".md"] };
 "markdown-elements/index.md": {
 	id: "markdown-elements/index.md";
   slug: "markdown-elements";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "post-default";
+  data: any
 } & { render(): Render[".md"] };
 "the-first-post/index.mdx": {
 	id: "the-first-post/index.mdx";
   slug: "the-first-post";
   body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
+  collection: "post-default";
+  data: any
 } & { render(): Render[".mdx"] };
 };
 

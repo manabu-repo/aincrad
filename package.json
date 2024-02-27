@@ -17,9 +17,30 @@
     "cleanup": "rimraf 'packages/**/node_modules' 'playgrounds/**/node_modules' 'node_modules'",
     "build": "pnpm -r --filter='./packages/*' run build",
     "test": "pnpm -r --filter='./packages/*' run test",
-    "preinstall": "npx -y only-allow pnpm"
+    "preinstall": "npx -y only-allow pnpm",
+    "docs:clean": "rimraf 'packages/docs-cactus/src/content/post'",
+    "ci-docs": "nr docs:clean && tsno run scripts/ci-docs.ts"
   },
   "devDependencies": {
-    "typescript": "^5.0.4"
+    "@antfu/eslint-config": "^0.38.6",
+    "@antfu/ni": "^0.21.3",
+    "@antfu/utils": "^0.7.2",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@types/node": "^18.16.5",
+    "@use-kit/node": "^0.0.1",
+    "bumpp": "^9.1.0",
+    "eslint": "^8.40.0",
+    "esno": "^0.16.3",
+    "fast-glob": "^3.2.12",
+    "lint-staged": "^13.2.2",
+    "mkdirp": "^3.0.1",
+    "pnpm": "^8.3.1",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.21.5",
+    "simple-git-hooks": "^2.8.1",
+    "tsno": "^2.0.0",
+    "typescript": "^5.0.4",
+    "unbuild": "^1.2.1",
+    "vitest": "^0.31.0"
   }
 }
