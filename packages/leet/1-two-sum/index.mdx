@@ -58,9 +58,9 @@ function twoSum(nums: number[], target: number): number[] {
   const map = new Map<number, number>()
 
   for (const [index, element] of nums.entries()) {
-    if (map.has(target - element)) {
+    if (map.has(target - element))
       return [map.get(target - element)!, index]
-    }
+
     map.set(element, index)
   }
 
