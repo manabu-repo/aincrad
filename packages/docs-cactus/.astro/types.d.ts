@@ -179,20 +179,6 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"post": {
-"7-reverse/index.md": {
-	id: "7-reverse/index.md";
-  slug: "7-reverse";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
-"9-is-palindrome/index.md": {
-	id: "9-is-palindrome/index.md";
-  slug: "9-is-palindrome";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".md"] };
 };
 "post-default": {
 "cover-image/index.md": {
