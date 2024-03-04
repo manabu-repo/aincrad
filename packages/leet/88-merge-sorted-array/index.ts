@@ -8,7 +8,7 @@ export function merge(nums1: number[], m: number, nums2: number[], n: number): n
 export function merge2(nums1: number[], m: number, nums2: number[], n: number): number[] {
   let p1 = 0
   let p2 = 0
-  const sorted = new Array(m + n).fill(0)
+  const sorted = Array.from<number>({ length: m + n }).fill(0)
   let cur
 
   while (p1 < m || p2 < n) {
@@ -23,7 +23,7 @@ export function merge2(nums1: number[], m: number, nums2: number[], n: number): 
 
     sorted[p1 + p2 - 1] = cur
   }
-  for (let i = 0; i != m + n; ++i)
+  for (let i = 0; i !== m + n; ++i)
     nums1[i] = sorted[i]
 
   return nums1
