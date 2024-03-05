@@ -2,7 +2,7 @@
 title: 'Remove Deplicates'
 description: 'Remove Duplicates from Sorted Array(删除有序数组中的重复项)'
 publishDate: '4 Mar 2024'
-tags: ['top-interview-150', 'easy', algorithm]
+tags: ['top-interview-150', 'easy', 'algorithm']
 ---
 
 ## Problem
