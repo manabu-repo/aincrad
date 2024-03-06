@@ -47,6 +47,8 @@ export function removeDuplicates(nums: number[]): number {
 }
 ```
 
+or
+
 ```ts
 export function removeDuplicatesArray(nums: number[]): number {
   return [...new Set(nums)].length
