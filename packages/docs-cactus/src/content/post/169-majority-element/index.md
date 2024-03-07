@@ -1,7 +1,7 @@
 ---
 title: 'Majority Element'
 description: 'Return the majority element in an array(多数元素)'
-publishDate: '2024-03-05'
+publishDate: '2024-03-06'
 tags: ['easy', 'algorithm']
 ---
 
