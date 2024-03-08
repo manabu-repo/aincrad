@@ -2,7 +2,8 @@
 title: "Generate Parentheses"
 description: "Generate all possible valid (proper) parentheses combinations of a given number of pairs(生成括号)"
 publishDate: "29 Feb 2024"
-tags: ["medium", "algorithm", "dfs", "backtracking"]
+tags: ["medium", "algorithm"]
+#  "dfs", "backtracking"
 ---
 
 ## Problem
