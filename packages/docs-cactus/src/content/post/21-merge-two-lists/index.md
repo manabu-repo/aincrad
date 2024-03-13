@@ -1,6 +1,6 @@
 ---
 title: 'MergeTwoLists'
-description: 'Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists(合并两个有序链表)'
+description: 'Merge two sorted linked lists and return it as a new list(合并两个有序链表)'
 publishDate: '2024-03-12'
 tag: ['easy', 'algorlithm']
 ---

@@ -207,6 +207,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"189-rotate-array/index.md": {
+	id: "189-rotate-array/index.md";
+  slug: "189-rotate-array";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "20-is-valid/index.md": {
 	id: "20-is-valid/index.md";
   slug: "20-is-valid";
