@@ -46,3 +46,15 @@ function rotate(nums: number[], k: number): void {
     nums[i] = newArr[i]
 }
 ```
+
+or
+
+```ts
+function rotate(nums: number[], k: number): void {
+  const n = nums.length
+  const arr = nums.slice(n - k)
+
+  nums.splice(n - k, k)
+  nums.unshift(...arr)
+}
+```
