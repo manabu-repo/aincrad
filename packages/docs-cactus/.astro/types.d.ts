@@ -242,6 +242,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"27-remove-element/index.md": {
+	id: "27-remove-element/index.md";
+  slug: "27-remove-element";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".md"] };
 "283-move-zeroes/index.md": {
 	id: "283-move-zeroes/index.md";
   slug: "283-move-zeroes";
