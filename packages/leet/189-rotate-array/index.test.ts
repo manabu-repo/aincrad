@@ -13,4 +13,16 @@ describe('rotate', () => {
     rotate(nums, 2)
     expect(nums).toEqual([3, 99, -1, -100])
   })
+
+  it('should rotate the array', () => {
+    const nums = [1, 2]
+    rotate(nums, 5)
+    expect(nums).toEqual([2, 1])
+  })
+
+  // it('should rotate the array', () => {
+  //   const nums = [1, 2]
+  //   rotate(nums, 2)
+  //   expect(nums).toEqual([2, 1])
+  // })
 })

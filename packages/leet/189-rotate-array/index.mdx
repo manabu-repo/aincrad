@@ -50,6 +50,17 @@ function rotate(nums: number[], k: number): void {
 or
 
 ```ts
+function rotate1(nums: number[], k: number): void {
+  for (let i = 0; i < k; i++) {
+    const last = nums.pop()
+    nums.unshift(last!)
+  }
+}
+```
+
+or
+
+```ts
 function rotate(nums: number[], k: number): void {
   const n = nums.length
   const arr = nums.slice(n - k)
