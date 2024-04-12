@@ -7,7 +7,7 @@ import { scan } from '@use-kit/node'
 
 function ci() {
   const pkgs = './packages'
-  const folders = scan(pkgs, { filters: ['docs-cactus', 'utils'] })
+  const folders = scan(pkgs, { filters: ['docs-cactus', 'utils', 'memo'] })
 
   folders.forEach((dir: fs.Dirent) => {
     const folder = `${pkgs}/docs-cactus/src/content/post`
