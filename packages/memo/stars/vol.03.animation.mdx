@@ -1,0 +1,50 @@
+```css
+.box {
+  animation: 1s infinite alternate;
+}
+```
+
+```css
+.box {
+  animation-name: test;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+}
+```
+
+## animation-name
+
+`none` | `<keyframes-name>`
+
+## animation-duration
+
+`<time>`
+
+## animation-timing-function
+
+`ease` | `linear` | `ease-in` | `ease-out` | `ease-in-out` | `<cubic-bezier>` | `step-start` | `step-end` | `steps(<number>, [start | end])`
+
+## animation-delay
+
+`<time>`
+
+## animation-iteration-count
+
+`<number>` | `infinite`
+
+## animation-direction
+
+`normal` | `reverse` | `alternate` | `alternate-reverse`
+
+## animation-fill-mode
+
+`none` | `forwards` | `backwards` | `both`
+
+## animation-play-state
+
+`running` | `paused`
