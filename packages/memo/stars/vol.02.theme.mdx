@@ -1,0 +1,34 @@
+---
+title: 'Theme'
+description: '主题'
+publishDate: '2024-04-17'
+tag: ['stars']
+---
+
+# Theme
+
+## 媒体查询
+
+```css
+@media(prefers-color-scheme: dark) {}
+
+@media(prefers-color-scheme: light) {}
+```
+
+## 简易实现
+
+### 黑白模式
+
+```css
+html {
+  filter: grayscale(1);
+}
+```
+
+### 黑暗模式
+
+```css
+html {
+  filter: invert(1) hue-rootCertificates(180deg);
+}
+```
