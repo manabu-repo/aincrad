@@ -184,141 +184,127 @@ declare module 'astro:content' {
   slug: "1-two-sum";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "13-roman-to-int/index.md": {
 	id: "13-roman-to-int/index.md";
   slug: "13-roman-to-int";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "136-single-number/index.md": {
 	id: "136-single-number/index.md";
   slug: "136-single-number";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "169-majority-element/index.md": {
 	id: "169-majority-element/index.md";
   slug: "169-majority-element";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "189-rotate-array/index.md": {
 	id: "189-rotate-array/index.md";
   slug: "189-rotate-array";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "20-is-valid/index.md": {
 	id: "20-is-valid/index.md";
   slug: "20-is-valid";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "21-merge-two-lists/index.md": {
 	id: "21-merge-two-lists/index.md";
   slug: "21-merge-two-lists";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "22-generate-parentheses/index.md": {
 	id: "22-generate-parentheses/index.md";
   slug: "22-generate-parentheses";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"25.3.3:TSUtilityTypes/index.mdx": {
+	id: "25.3.3:TSUtilityTypes/index.mdx";
+  slug: "2533tsutilitytypes";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 "26-remove-duplicates/index.md": {
 	id: "26-remove-duplicates/index.md";
   slug: "26-remove-duplicates";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "27-remove-element/index.md": {
 	id: "27-remove-element/index.md";
   slug: "27-remove-element";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "283-move-zeroes/index.md": {
 	id: "283-move-zeroes/index.md";
   slug: "283-move-zeroes";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "448-find-all-numbers-disappeared-in-an-array/index.md": {
 	id: "448-find-all-numbers-disappeared-in-an-array/index.md";
   slug: "448-find-all-numbers-disappeared-in-an-array";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "461-hamming-distance/index.md": {
 	id: "461-hamming-distance/index.md";
   slug: "461-hamming-distance";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "7-reverse/index.md": {
 	id: "7-reverse/index.md";
   slug: "7-reverse";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "70-climbing-stairs/index.md": {
 	id: "70-climbing-stairs/index.md";
   slug: "70-climbing-stairs";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "88-merge-sorted-array/index.md": {
 	id: "88-merge-sorted-array/index.md";
   slug: "88-merge-sorted-array";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
 "9-is-palindrome/index.md": {
 	id: "9-is-palindrome/index.md";
   slug: "9-is-palindrome";
   body: string;
   collection: "post";
-  data: any
+  data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"memo/index.mdx": {
-	id: "memo/index.mdx";
-  slug: "memo";
-  body: string;
-  collection: "post";
-  data: any
-} & { render(): Render[".mdx"] };
-"memo/plan/index.mdx": {
-	id: "memo/plan/index.mdx";
-  slug: "memo/plan";
-  body: string;
-  collection: "post";
-  data: any
-} & { render(): Render[".mdx"] };
-"memo/project/index.mdx": {
-	id: "memo/project/index.mdx";
-  slug: "memo/project";
-  body: string;
-  collection: "post";
-  data: any
-} & { render(): Render[".mdx"] };
 };
 "post-default": {
 "cover-image/index.md": {
@@ -352,5 +338,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = never;
+	type ContentConfig = typeof import("../src/content/config");
 }
