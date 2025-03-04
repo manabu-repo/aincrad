@@ -235,13 +235,6 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"25.3.3:TSUtilityTypes/index.mdx": {
-	id: "25.3.3:TSUtilityTypes/index.mdx";
-  slug: "2533tsutilitytypes";
-  body: string;
-  collection: "post";
-  data: InferEntrySchema<"post">
-} & { render(): Render[".mdx"] };
 "26-remove-duplicates/index.md": {
 	id: "26-remove-duplicates/index.md";
   slug: "26-remove-duplicates";
@@ -305,6 +298,20 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"@25.3.3:TSUtilityTypes/index.mdx": {
+	id: "@25.3.3:TSUtilityTypes/index.mdx";
+  slug: "2533tsutilitytypes";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
+"@25.3.4:BinaryTreeTraversal/index.mdx": {
+	id: "@25.3.4:BinaryTreeTraversal/index.mdx";
+  slug: "2534binarytreetraversal";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 };
 "post-default": {
 "cover-image/index.md": {
