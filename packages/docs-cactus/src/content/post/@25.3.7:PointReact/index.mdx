@@ -1,0 +1,279 @@
+---
+title: "React Interview Points"
+description: "React Interview Points(React 面试要点)"
+publishDate: "7 Mar 2025"
+updatedDate: "7 Mar 2025"
+tags: ["post", "interview"]
+---
+
+## 基础部分
+
+1. JSX
+
+- 什么是`JSX`?
+> JSX 是一种语法扩展，它允许在 JavaScript 中使用 HTML-like 的语法来描述 UI。
+
+- 它是如何工作的?
+> JSX 会被 Babel 编译成 React.createElement 函数调用，该函数会返回一个 React 元素对象。
+
+- 为什么使用 JSX?
+> JSX 提供了一种更直观、更简洁的方式来描述 UI 并且可以与 JavaScript 代码无缝集成。
+
+2. React 的特点
+
+> React 是一个用于构建用户界面的 JavaScript 库。
+
+> React 的特点包括：组件化、虚拟`DOM`、单向数据流、声明式编程、`JSX`、生命周期、`Hooks`等。
+
+- 组件化：将页面拆分成多个小的、可复用的组件，每个组件有自己的职责和状态，提高代码的可维护性和复用性。
+- 虚拟 DOM: React 引入虚拟 DOM 作为真实 DOM 的抽象表示，通过对比虚拟 DOM 的差异，只更新需要更新的真实 DOM 部分，减少 DOM 操作，提高性能。
+- 单向数据流：数据的流动是单向的，易于理解和调试，数据的变化会触发视图的更新，但视图的变化不会直接修改数据。
+- 声明式编程：通过声明式的语法描述 UI 的外观和行为，代码更简洁、易读。
+
+3. `React` 的生命周期（类组件）
+
+- `constructor()`
+- `static getDerivedStateFromProps()`
+- `render()`
+- `componentDidMount()`
+- `shouldComponentUpdate()`
+- `getSnapshotBeforeUpdate()`
+- `componentDidUpdate()`
+- `componentWillUnmount()`
+
+4. `Hooks`（函数组件）
+
+- `useState()`
+- `useEffect()`
+- `useContext()`
+- `useReducer()`
+- `useCallback()`
+- `useMemo()`
+- `useRef()`
+- `useImperativeHandle()` 与 `forwardRef()`
+- `useLayoutEffect()`
+- `useDebugValue()`
+
+5. `Context API`
+
+- `React.createContext()`
+- `Context.Provider`
+- `Context.Consumer`
+- `useContext()`
+
+6. `Refs`
+
+- `React.createRef()`
+- `ref` 属性
+- `useRef()`
+
+7. `PropTypes`
+
+- `PropTypes.string` 与 `PropTypes.number` 与 `PropTypes.bool` 与 `PropTypes.func` 与 `PropTypes.array` 与 `PropTypes.object` 与 `PropTypes.node` 与 `PropTypes.element`
+- `PropTypes.instanceOf()`
+- `PropTypes.oneOf()` 与 `PropTypes.oneOfType()`
+- `PropTypes.shape()`
+- `PropTypes.exact()`
+
+8. 组件
+
+组件是React应用的基本构建块,它可以将页面拆分成多个独立的、可复用的部分。可以是类组件或函数组件。
+
+- 函数组件：也称为无状态组件，是一个纯函数，接收 props 作为参数，返回一个 React 元素。没有自己的状态和生命周期方法。优点是简单易维护
+
+- 类组件：有状态组件,通过class关键字定义,继承自 `React.Componet` 有自己的状态和生命周期方法，可以处理更复杂的逻辑，可以访问`this`关键字。
+
+9. 如何优化 React 应用性能？
+
+- 使用 `shouldComponentUpdate` 或 `React.memo`：在类组件中，可以使用 `shouldComponentUpdate` 生命周期方法来控制组件是否需要重新渲染；在函数组件中，可以使用 `React.memo` 来包裹组件，对组件进行浅比较，避免不必要的渲染。
+
+- 使用 `React.lazy` 和 `Suspense` 进行代码分割：对于大型应用，可以将代码分割成多个小块，使用 `React.lazy` 动态加载组件，`Suspense` 用于在组件加载时显示加载提示，减少初始加载时间。
+
+- 优化 `CSS`：避免使用内联样式，使用 `CSS` 类名，减少 DOM 操作和重排。
+
+- 使用 `useCallback` 和 `useMemo`：在函数组件中，`useCallback` 用于缓存函数，`useMemo` 用于缓存计算结果，避免不必要的函数创建和计算。
+
+10. 虚拟 DOM 如何提高性能
+
+- 减少 `DOM` 操作：虚拟`DOM`通过在内存中进行比较，找出需要更新的部分，会将多次操作合并成一次，然后批量更新到真实 `DOM`，减少了 `DOM` 操作次数。
+
+- 批量更新：`React` 会将多个 `setState` 调用合并成一个更新，以减少不必要的重渲染。减少浏览器的重排和重绘次数，提高了性能
+
+- 高效的 `Diff` 算法：通过对比新旧虚拟 `DOM` 的差异，快速找出需要更新的部分，提高了比较的效率。
+
+11. React 中的事件机制
+
+- 事件冒泡：事件从触发元素开始，逐级向上传播到根元素的过程。
+- 事件捕获：事件从根元素开始，逐级向下传播到触发元素的过程。
+- 事件委托：将事件监听器绑定在父元素上，利用事件冒泡机制，通过判断事件的目标元素来处理事件。
+- 事件代理：将事件监听器绑定在父元素上，通过事件冒泡机制，通过判断事件的目标元素来处理事件。
+
+12. React 中的 `key` 属性
+
+> `key` 属性用于帮助 React 识别列表中的每个元素，以便在更新列表时能够正确地识别新增、删除、移动的元素。
+
+13. React 中的 `ref` 属性
+
+> `ref` 属性用于获取组件的实例或元素节点，用于访问组件内部状态和操作组件。
+
+14. React 中的 `Fragment`
+
+> `Fragment` 是一个特殊的组件，用于将多个元素组合成一个虚拟的父元素，避免在渲染时生成额外的 DOM 元素。
+
+15. React 中的 `Portal`
+
+> `Portal` 是一种将子组件渲染到其他 DOM 元素上的方式，用于解决组件层级问题，比如将弹出框渲染到页面的根元素上。
+
+16. React 中的状态管理方式
+
+- `useState`：用于在函数组件中管理状态。适用于组件内部的简单状态管理，数据只在组件内部使用，不需要共享。
+- `useReducer`：用于在函数组件中管理状态，使用 `reducer` 函数来处理状态更新。
+- `提升状态`：当多个组件需要共享状态时，可以将状态提升到它们的共同父组件中，通过 props 传递数据和回调函数。
+- `Context API`：用于在组件树中共享状态，通过 `Provider` 和 `Consumer` 来传递数据。
+- `Redux`：用于管理应用的全局状态，通过 `store` 来管理状态，使用 `action` 和 `reducer` 来更新状态。
+- `MobX`：用于管理应用的全局状态，通过 `observable` 和 `action` 来管理状态，通过 `reaction` 来响应状态的变化。
+
+17. React Router 有哪些类型的路由？
+
+- `BrowserRouter`：用于创建一个浏览器环境下的路由，使用 HTML5 的 history API（pushState、replaceState 和 popstate 事件）来管理路由，适用于现代浏览器，URL 看起来更自然，没有哈希符号。
+- `HashRouter`：用于创建一个 URL 的哈希值（hash）环境下的路由，使用 URL 的哈希值来表示路由。
+- `MemoryRouter`：用于创建一个内存中的路由，用于测试和开发环境。
+- `StaticRouter`：用于创建一个静态的 URL 路由，用于生产环境。
+- `NativeRouter`：用于创建一个 React Native 的路由，用于移动端开发。
+
+18. React Router 如何实现路由守卫？
+
+- `Route` 组件的 `render` 属性：可以在 `render` 属性中添加条件判断，根据条件渲染不同的组件。
+- `Redirect` 组件：用于重定向到其他路由，可以用于实现登录验证和权限控制。
+- `withRouter` 高阶组件：用于将路由信息传递给组件，可以在组件中访问路由信息。
+- `PrivateRoute` 自定义组件实现：用于实现私有路由，根据用户是否登录，显示不同的组件。
+
+```jsx
+import { Route, Redirect, withRouter } from 'react-router-dom';
+
+function PrivateRoute({ component: Component, authenticated, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        authenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+}
+
+export default withRouter(PrivateRoute);
+```
+
+19. React Router 如何实现路由懒加载？
+
+- `React.lazy`：用于动态加载组件，可以结合 `Suspense` 组件一起使用，实现路由懒加载。
+- `Suspense`：用于在组件加载时显示加载提示，可以结合 `React.lazy` 一起使用，实现路由懒加载。
+
+```jsx
+import React, { lazy, Suspense } from 'react';
+
+const LazyComponent = lazy(() => import('./LazyComponent'));
+
+function LazyRoute() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  );
+}
+```
+
+## 核心机制
+
+1. 虚拟`DOM`与`Diff`算法
+
+2. `useMemo` 与 `useCallback`
+
+3. `useReducer` 与 `useContext`
+
+4. `Fiber` 架构与异步渲染
+
+5. `Hooks` 实现原理
+
+6. `React Server Components` 服务端渲染(`RSC`)
+
+- 服务端渲染（Server Side Rendering，SSR）是指在服务器上渲染 React 应用，然后将渲染后的 HTML 返回给客户端，客户端再渲染。
+- 服务端渲染的优点是首次加载速度更快，SEO 更好，用户体验更好。
+- 服务端渲染的缺点是服务器需要处理更多的请求，需要更多的内存和 CPU 资源。
+- React 提供了 `ReactDOMServer` 模块，用于在服务器上渲染 React 应用。
+
+## 状态管理与数据流
+
+1. 状态提升与`Context API`
+
+2. `Redux`与`MobX`
+
+Redux 是一个用于管理 React 应用状态的可预测状态容器，其工作原理如下：
+
+- 单一数据源：应用的所有状态都存储在一个单一的 store 中，方便管理和调试。
+
+- Action：是一个描述状态变化的对象，包含一个 type 属性和可选的 payload 属性。组件通过 dispatch 方法发送 action 到 store。
+
+- Reducer：是一个纯函数，接收当前状态和 action 作为参数，返回一个新的状态。store 会根据 action 调用相应的 reducer 来更新状态。
+
+- 订阅与更新：组件可以订阅 store 的变化，当状态发生变化时，store 会通知所有订阅的组件，组件可以获取新的状态并更新视图。
+
+## 性能优化
+
+1. 避免不必要的渲染
+
+2. 代码分割与懒加载
+
+## 项目实战与设计
+
+### 复杂组件设计
+
+1. 设计一个支持万级数据量的高性能表格组件
+
+- 使用虚拟加载技术()，只渲染可视区域内的数据(元素)
+- 分页或懒加载数据，避免一次性渲染全部内容
+- 使用 `useMemo` 缓存计算密集型操作(如排序/过滤)
+
+更多：
+
+- 使用 `useCallback` 缓存函数
+- 使用 `React.memo` 或 `useMemo` 缓存组件
+
+2. 设计一个支持拖拽排序的列表组件
+
+- 使用 `react-dnd` 或 `react-beautiful-dnd` 等库实现拖拽功能
+- 使用 `useState` 或 `useReducer` 管理组件状态
+- 使用 `useEffect` 处理拖拽结束后的数据更新
+
+### 错误处理与监控
+
+- 使用 `try...catch` 语句处理错误
+- 使用 `console.error` 或 `console.warn` 记录错误信息
+- 使用 `window.onerror` 或 `window.onunhandledrejection` 监听全局错误信息
+
+## 服务端渲染（`SSR`）与 `Next.js`
+
+## 测试 (`Jest` 与 `React Testing Library`)
+
+1. 单元测试
+
+2. 组件测试
+
+## React 18+ 新特性
+
+### `Concurrent Mode` 并发模式
+
+### 并发API `startTransition` 和 `useDeferredValue`
+
+### `Suspense` 与 `lazy`、`SuspenseList`
+
+### 自动批处理 `Automatic Batching`
+
+> 自动批处理指的是 React 会将多个 `setState` 调用合并成一个更新，以减少不必要的重渲染。
+
+## React生态与工具

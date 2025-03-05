@@ -312,6 +312,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
+"@25.3.7:PointReact/index.mdx": {
+	id: "@25.3.7:PointReact/index.mdx";
+  slug: "2537pointreact";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 };
 "post-default": {
 "cover-image/index.md": {
