@@ -2,7 +2,7 @@
 title: "React Interview Points"
 description: "React Interview Points(React 面试要点)"
 publishDate: "7 Mar 2025"
-updatedDate: "7 Mar 2025"
+updatedDate: "10 Mar 2025"
 tags: ["post", "interview"]
 ---
 
@@ -135,8 +135,8 @@ tags: ["post", "interview"]
 
 17. React Router 有哪些类型的路由？
 
-- `BrowserRouter`：用于创建一个浏览器环境下的路由，使用 HTML5 的 history API（pushState、replaceState 和 popstate 事件）来管理路由，适用于现代浏览器，URL 看起来更自然，没有哈希符号。
-- `HashRouter`：用于创建一个 URL 的哈希值（hash）环境下的路由，使用 URL 的哈希值来表示路由。
+- `BrowserRouter`：用于创建一个浏览器环境下的路由，使用 HTML5 的 `history API`(`pushState`、`replaceState` 和 `popstate` 事件)来管理路由，适用于现代浏览器，`URL` 看起来更自然，没有哈希符号。
+- `HashRouter`：用于创建一个 URL 的哈希值（`hash`）环境下的路由，使用 URL 的哈希值来表示路由。
 - `MemoryRouter`：用于创建一个内存中的路由，用于测试和开发环境。
 - `StaticRouter`：用于创建一个静态的 URL 路由，用于生产环境。
 - `NativeRouter`：用于创建一个 React Native 的路由，用于移动端开发。
@@ -202,8 +202,8 @@ function LazyRoute() {
 
 6. `React Server Components` 服务端渲染(`RSC`)
 
-- 服务端渲染（Server Side Rendering，SSR）是指在服务器上渲染 React 应用，然后将渲染后的 HTML 返回给客户端，客户端再渲染。
-- 服务端渲染的优点是首次加载速度更快，SEO 更好，用户体验更好。
+- 服务端渲染（`Server Side Rendering`,`SSR`）是指在服务器上渲染 React 应用，然后将渲染后的 HTML 返回给客户端，客户端再渲染。
+- 服务端渲染的优点是首次加载速度更快，`SEO` 更好，用户体验更好。
 - 服务端渲染的缺点是服务器需要处理更多的请求，需要更多的内存和 CPU 资源。
 - React 提供了 `ReactDOMServer` 模块，用于在服务器上渲染 React 应用。
 
@@ -217,11 +217,11 @@ Redux 是一个用于管理 React 应用状态的可预测状态容器，其工�
 
 - 单一数据源：应用的所有状态都存储在一个单一的 store 中，方便管理和调试。
 
-- Action：是一个描述状态变化的对象，包含一个 type 属性和可选的 payload 属性。组件通过 dispatch 方法发送 action 到 store。
+- `Action`：是一个描述状态变化的对象，包含一个 type 属性和可选的 payload 属性。组件通过 `dispatch` 方法发送 `action` 到 `store`。
 
-- Reducer：是一个纯函数，接收当前状态和 action 作为参数，返回一个新的状态。store 会根据 action 调用相应的 reducer 来更新状态。
+- `Reducer`：是一个纯函数，接收当前状态和 `action` 作为参数，返回一个新的状态。`store` 会根据 `action` 调用相应的 `reducer` 来更新状态。
 
-- 订阅与更新：组件可以订阅 store 的变化，当状态发生变化时，store 会通知所有订阅的组件，组件可以获取新的状态并更新视图。
+- 订阅与更新：组件可以订阅 `store` 的变化，当状态发生变化时，`store` 会通知所有订阅的组件，组件可以获取新的状态并更新视图。
 
 ## 性能优化
 
@@ -277,3 +277,260 @@ Redux 是一个用于管理 React 应用状态的可预测状态容器，其工�
 > 自动批处理指的是 React 会将多个 `setState` 调用合并成一个更新，以减少不必要的重渲染。
 
 ## React生态与工具
+
+### react-router
+
+基本使用：
+
+```jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+
+function PrivateRoute({ component: Component, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        localStorage.getItem('token') ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
+    />
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <Route path="/login" component={Login} />
+      </Switch>
+    </Router>
+  );
+}
+```
+
+1. `BrowserRouter`：用于创建一个浏览器路由，用于网页开发。
+2. `HashRouter`：用于创建一个哈希路由，用于单页应用开发。
+3. `NativeRouter`：用于创建一个 React Native 的路由，用于移动端开发。
+4. `MemoryRouter`：用于创建一个内存路由，用于测试和开发环境。
+5. `Route`：用于定义路由规则，用于匹配 URL 并渲染对应的组件。
+6. `Link`：用于创建一个链接，用于跳转到指定的路由。
+7. `Switch`：用于匹配路由规则，只渲染第一个匹配的组件。
+8. `Redirect`：用于重定向到其他路由。
+9. `withRouter`：用于获取路由信息，用于在组件中获取路由信息。
+10. `useHistory`：用于获取路由历史信息，用于在函数组件中获取路由信息。
+11. `useLocation`：用于获取当前路由信息，用于在函数组件中获取当前路由信息。
+12. `useParams`：用于获取路由参数，用于在函数组件中获取路由参数。
+13. `useRouteMatch`：用于获取路由匹配信息，用于在函数组件中获取路由匹配信息。
+14. `useRoutes`：用于匹配路由规则，用于在函数组件中匹配路由规则。
+
+### react-redux
+
+1. 定义 `action` 和 `reducer`
+
+> action 是一个描述状态变化的对象，包含一个 `type` 属性和可选的 `payload` 属性。
+
+> reducer 是一个纯函数，接收当前状态和 action 作为参数，返回一个新的状态。
+
+```jsx
+// 定义 action
+const increment = () => ({ type: 'INCREMENT' });
+const decrement = () => ({ type: 'DECREMENT' });
+
+// 定义 reducer
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+}
+```
+
+2. 创建 `store`
+
+> store 是一个用于管理应用状态的容器，包含应用的所有状态和 reducer。
+
+```jsx
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+const store = createStore(combineReducers({ counter: counterReducer }), applyMiddleware(thunk));
+
+// 简单创建
+// const store = createStore(counterReducer);
+```
+
+- `combineReducers`：用于将多个 `reducer` 合并成一个 `reducer`。
+- `applyMiddleware`：用于应用中间件，中间件可以用于处理异步操作、日志记录等。
+- `thunk`：用于处理异步操作，可以用于发送 `AJAX` 请求、处理 `Promise` 等。
+
+3. 在 `React` 组件中使用
+
+- 在类组件中使用：
+
+> 使用 `connect` 函数将组件连接到 `store`，通过 `mapStateToProps` 和 `mapDispatchToProps` 映射状态和操作到组件的 `props`。
+
+```jsx
+import { connect } from 'react-redux';
+import React from 'react';
+import { increment, decrement } from './actions';
+
+const Counter = ({ count, increment, decrement }) => {
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  count: state.counter.count,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  increment: () => dispatch(increment()),
+  decrement: () => dispatch(decrement()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+```
+
+- 在函数组件中使用：
+
+> 使用 `useSelector` 和 `useDispatch` 钩子来获取状态和操作。
+
+- `useSelector`：用于获取状态。
+- `useDispatch`：用于获取操作。
+
+```jsx
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from './actions';
+
+const Counter = () => {
+  const count = useSelector(state => state.counter.count);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => dispatch(increment())}>Increment</button>
+      <button onClick={() => dispatch(decrement())}>Decrement</button>
+    </div>
+  );
+};
+
+export default Counter;
+```
+
+完整使用例子：
+
+```jsx
+import React from 'react';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider, connect } from 'react-redux';
+import thunk from 'redux-thunk';
+
+// 定义 reducer
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+};
+
+// 创建 store
+const store = createStore(combineReducers({ counter: counterReducer }), applyMiddleware(thunk));
+
+// 定义组件
+const Counter = ({ count, increment, decrement }) => {
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+// 连接组件和 store
+const ConnectedCounter = connect((state => ({ count: state.counter.count })), dispatch => ({
+  increment: () => dispatch({ type: 'INCREMENT' }),
+  decrement: () => dispatch({ type: 'DECREMENT' }),
+}))(Counter);
+
+// 定义组件
+const App = () => {
+  return (
+    <Provider store={store}>
+      <ConnectedCounter />
+    </Provider>
+});
+```
+
+### zustand
+
+基本使用：
+
+```jsx
+import create from 'zustand';
+
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+  decrement: () => set((state) => ({ count: state.count - 1 })),
+}));
+
+const Counter = () => {
+  const { count, increment, decrement } = useStore();
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+    </div>
+  );
+};
+
+const App = () => {
+  return <Counter />;
+};
+```
+### react-query
+
+基本使用：
+
+```jsx
+import React from 'react';
+import { useQuery } from 'react-query';
+
+const fetchData = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+  return res.json();
+};
+
+const App = () => {
+  const { data, isLoading, isError } = useQuery('todo', fetchData);
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error :(</p>;
+
+  return <p>{data.title}</p>;
+};
+```
