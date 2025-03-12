@@ -298,6 +298,13 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
+"@25.3.10:CommonAlgorithms/index.mdx": {
+	id: "@25.3.10:CommonAlgorithms/index.mdx";
+  slug: "25310commonalgorithms";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 "@25.3.3:TSUtilityTypes/index.mdx": {
 	id: "@25.3.3:TSUtilityTypes/index.mdx";
   slug: "2533tsutilitytypes";
