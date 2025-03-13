@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case</title>
+
+  <style>
+    .c {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .k {
+      width: 100%;
+      max-width: 200px;
+
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    /* 当 .c 容器内子元素数量大于等于 3 时的布局 */
+    .c:has(> .k:nth-child(3)) {
+      justify-content: space-between;
+    }
+
+    .c:has(> .k:nth-child(3))>.k:not(:nth-last-child(-n + 2)) {
+      margin-right: auto;
+      border: red 1px solid;
+    }
+
+    /* 当 .c 容器内子元素数量小于 3 时的布局 */
+    .c:has(> .k:nth-child(-n + 2)) {
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="case-container">
+    <div>1. CSS样式布局，使用Flex实现：</div>
+    <!-- 1. 所有div.k水平展示，等宽最大200px -->
+    <!-- 2. 没有沾满div.c的空间时，前n-2个在左边，最后2个在右边 -->
+    <!-- 3. 当n<3时，所有在右边 -->
+    <div>example1:</div>
+    <div class="c">
+      <div class="k">1</div>
+      <div class="k">2</div>
+      <div class="k">3</div>
+      <div class="k">4</div>
+      <div class="k">5</div>
+    </div>
+
+    <div>example2:</div>
+    <div class="c">
+      <div class="k">4</div>
+      <div class="k">5</div>
+    </div>
+  </div>
+
+  <div class="case-container">
+    <div>2. 实现一个方法用于解析URL中各个query参数</div>
+    <pre id="parseQuery">
+      function parseQuery(url) {
+        const query = url.split('?')[1]
+        const queryArr = query.split('&')
+
+        const ret = {}
+        queryArr.forEach(item => {
+          const keyValue = item.split('=')
+          ret[keyValue[0]] = keyValue[1]
+        })
+        return ret
+      }
+    </pre>
+  </div>
+
+  <div class="case-container">
+    <div>3. 实现定时器cmbSetInterVal</div>
+    <pre id="cmbSetInterVal">
+      function cmbSetInterVal(fn, a, b) {
+        let count = 0
+        const timer = setInterval(() => {
+          fn()
+          count++
+        }, a + b * count)
+
+        return {
+          count,
+          stop() {
+            clearInterval(timer)
+          }
+        }
+      }
+    </pre>
+  </div>
+  <script>
+    // 实现一个方法用于解析URL中各个query参数，并将其按key-value形式存储在一个对象中
+    function parseQuery(url) {
+      const query = url.split('?')[1]
+      const queryArr = query.split('&')
+
+      const ret = {}
+      queryArr.forEach((item) => {
+        const keyValue = item.split('=')
+        ret[keyValue[0]] = keyValue[1]
+      })
+      return ret
+    }
+
+    const test1 = parseQuery('http://a.com?a=1&b=2&c=3')
+    console.log('test1:', test1)
+
+    // 实现定时器cmbSetInterVal，按照每次间隔时间为a，a+b，a+2b ... a+nb的周期来调用函数fn，并提供一个stop方法用于停止该计时器
+    function cmbSetInterVal(fn, a, b) {
+      let count = 0
+      let timerId = 1
+
+      function run() {
+        const interval = a + b * count
+        // 尝试使用setInterval实现，测试未按预期执行（传入的interval固定后就不会改变），改用setTimeout实现
+        timerId = setTimeout(() => {
+          fn()
+          count++
+          run()
+        }, interval)
+      }
+
+      run()
+
+      // let elapsed = 0
+      // function getCurrentInterval() {
+      //   return a + b * count
+      // }
+
+      // const timer = setInterval(() => {
+      //   elapsed++
+      //   if (elapsed >= getCurrentInterval()) {
+      //     fn()
+      //     count++
+      //     elapsed = 0
+      //   }
+      // }, 1000)
+
+      return {
+        stop() {
+          clearInterval(timerId)
+          // clearInterval(timer)
+        },
+      }
+    }
+
+    let globalCount = 0
+    const test2 = cmbSetInterVal(() => {
+      console.log('test2:', globalCount++)
+
+      if (globalCount >= 5)
+        test2.stop()
+    }, 1000, 2000)
+  </script>
+</body>
+
+</html>
