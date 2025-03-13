@@ -1,0 +1,321 @@
+---
+title: "Interview Codding"
+description: "常见面试手写编程题"
+publishDate: "13 Mar 2025"
+updatedDate: "13 Mar 2025"
+tags: ["post", "interview"]
+---
+
+## 节流与防抖
+
+### 节流
+
+> 节流是指在一定时间内只触发一次回调，如果在这段时间内又被触发，则忽略。
+
+```typescript
+function throttle(fn: Function, wait: number) {
+  let timer: number | null = null;
+  return function (...args: any[]) {
+    if (timer) return;
+    timer = window.setTimeout(() => {
+      fn(...args);
+      timer = null;
+    }, wait);
+  };
+}
+```
+
+### 防抖
+
+> 防抖是指在事件被触发 n 秒后再执行回调，如果在这 n 秒内又被触发，则重新计时。
+
+```typescript
+function debounce(fn: Function, wait: number) {
+  let timer: number | null = null;
+  return function (...args: any[]) {
+    if (timer) {
+      window.clearTimeout(timer);
+    }
+    timer = window.setTimeout(() => {
+      fn(...args);
+      timer = null;
+    }, wait);
+  };
+}
+```
+
+## 深拷贝
+
+> 深拷贝是指在拷贝对象时，不仅要拷贝对象本身，还要拷贝对象内部的所有引用类型。
+
+```typescript
+function deepClone(obj: any): any {
+  if (typeof obj !== "object" || obj === null) {
+    return obj;
+  }
+
+  if (obj instanceof Date) {
+    return new Date(obj);
+  }
+
+  if (obj instanceof RegExp) {
+    return new RegExp(obj);
+  }
+
+  const cloneObj = Array.isArray(obj) ? [] : {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      cloneObj[key] = deepClone(obj[key]);
+    }
+  }
+  return cloneObj;
+}
+```
+
+## 实现 `call`
+
+> `call()` 方法使用一个指定的 `this` 值和单独给出的一个或多个参数来调用一个函数。
+
+```typescript
+Function.prototype.myCall = function (context: any, ...args: any[]) {
+  context = context || window;
+  const fn = Symbol();
+  context[fn] = this;
+  const result = context[fn](...args);
+  delete context[fn];
+  return result;
+};
+```
+
+## 实现 `apply`
+
+> `apply()` 方法调用一个具有给定 `this` 值的函数，以及作为一个数组（或类似数组对象）提供的参数。
+
+```typescript
+Function.prototype.myApply = function (context: any, args: any[]) {
+  context = context || window;
+  const fn = Symbol();
+  context[fn] = this;
+  const result = context[fn](...args);
+  delete context[fn];
+  return result;
+};
+```
+
+## 实现 `bind`
+
+> `bind()` 方法创建一个新的函数，当这个新函数被调用时，`bind()` 的第一个参数将作为它运行时的 `this`，之后的一序列参数将会在传递的实参前传入作为它的参数。
+
+```typescript
+Function.prototype.myBind = function (context: any, ...args: any[]) {
+  const fn = this;
+  return function (...newArgs: any[]) {
+    return fn.apply(context, [...args, ...newArgs]);
+  };
+};
+```
+
+## 实现 `new`
+
+> `new` 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象类型之一。
+
+```typescript
+function myNew(fn: Function, ...args: any[]) {
+  const obj = Object.create(fn.prototype);
+  const result = fn.apply(obj, args);
+  return result instanceof Object ? result : obj;
+}
+```
+
+## 实现 `instanceof`
+
+> `instanceof` 运算符用于测试构造函数的 `prototype` 属性是否出现在对象的原型链中的任何位置。
+
+```typescript
+function myInstanceOf(left: any, right: any) {
+  let proto = Object.getPrototypeOf(left);
+  while (proto) {
+    if (proto === right.prototype) {
+      return true;
+    }
+    proto = Object.getPrototypeOf(proto);
+  }
+  return false;
+}
+```
+
+## 实现 `Object.create`
+
+> `Object.create(proto)` 方法创建一个新对象，使用现有的对象 `proto` 作为新创建对象的原型。
+
+```typescript
+function myCreate(proto: any) {
+  function F() {}
+  F.prototype = proto;
+  return new F();
+}
+```
+
+## 数组扁平化
+
+```typescript
+function flatten(arr: any[]): any[] {
+  return arr.reduce((prev, cur) => {
+    return prev.concat(Array.isArray(cur) ? flatten(cur) : cur);
+  }, []);
+}
+```
+
+## 数组去重
+
+```typescript
+function unique(arr: any[]): any[] {
+  return Array.from(new Set(arr));
+}
+```
+
+## 数组乱序
+
+```typescript
+function shuffle(arr: any[]): any[] {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+```
+
+## 数组求和
+
+```typescript
+function sum(arr: number[]): number {
+  return arr.reduce((prev, cur) => prev + cur, 0);
+}
+```
+
+## 手写 Promise
+
+> 需要理解 Promise 的基本原理和状态机制。Promise 有三种状态：pending（进行中）、fulfilled（已成功）、rejected（已失败），且状态一旦改变就不能再变。
+
+```typescript
+// 定义 Promise 的三种状态
+enum PromiseState {
+    PENDING = 'pending',
+    FULFILLED = 'fulfilled',
+    REJECTED = 'rejected'
+}
+
+// 定义一个回调函数类型
+type Callback = () => void;
+
+// 实现自定义的 Promise 类
+class MyPromise<T> {
+    private state: PromiseState = PromiseState.PENDING;
+    private value: T | undefined;
+    private reason: any;
+    private onFulfilledCallbacks: Callback[] = [];
+    private onRejectedCallbacks: Callback[] = [];
+
+    constructor(executor: (resolve: (value: T) => void, reject: (reason: any) => void) => void) {
+        const resolve = (value: T) => {
+            if (this.state === PromiseState.PENDING) {
+                this.state = PromiseState.FULFILLED;
+                this.value = value;
+                this.onFulfilledCallbacks.forEach(callback => callback());
+            }
+        };
+
+        const reject = (reason: any) => {
+            if (this.state === PromiseState.PENDING) {
+                this.state = PromiseState.REJECTED;
+                this.reason = reason;
+                this.onRejectedCallbacks.forEach(callback => callback());
+            }
+        };
+
+        try {
+            executor(resolve, reject);
+        } catch (error) {
+            reject(error);
+        }
+    }
+
+    then<U>(
+        onFulfilled?: (value: T) => U | Promise<U>,
+        onRejected?: (reason: any) => U | Promise<U>
+    ): MyPromise<U> {
+        onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value: T) => value as unknown as U;
+        onRejected = typeof onRejected === 'function' ? onRejected : (reason: any) => { throw reason; };
+
+        return new MyPromise<U>((resolve, reject) => {
+            const handleFulfilled = () => {
+                try {
+                    const result = onFulfilled!(this.value!);
+                    if (result instanceof MyPromise) {
+                        result.then(resolve, reject);
+                    } else {
+                        resolve(result);
+                    }
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            const handleRejected = () => {
+                try {
+                    const result = onRejected!(this.reason);
+                    if (result instanceof MyPromise) {
+                        result.then(resolve, reject);
+                    } else {
+                        resolve(result);
+                    }
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            if (this.state === PromiseState.FULFILLED) {
+                setTimeout(handleFulfilled, 0);
+            } else if (this.state === PromiseState.REJECTED) {
+                setTimeout(handleRejected, 0);
+            } else {
+                this.onFulfilledCallbacks.push(handleFulfilled);
+                this.onRejectedCallbacks.push(handleRejected);
+            }
+        });
+    }
+
+    catch<U>(onRejected: (reason: any) => U | Promise<U>): MyPromise<U> {
+        return this.then(undefined, onRejected);
+    }
+
+    static resolve<T>(value: T): MyPromise<T> {
+        if (value instanceof MyPromise) {
+            return value;
+        }
+        return new MyPromise<T>((resolve) => {
+            resolve(value);
+        });
+    }
+
+    static reject<T>(reason: any): MyPromise<T> {
+        return new MyPromise<T>((_, reject) => {
+            reject(reason);
+        });
+    }
+}
+
+// 使用示例
+const promise = new MyPromise<number>((resolve, reject) => {
+    setTimeout(() => {
+        resolve(42);
+    }, 1000);
+});
+
+promise.then((value) => {
+    console.log('Resolved value:', value);
+}).catch((error) => {
+    console.error('Rejected reason:', error);
+});
+```
