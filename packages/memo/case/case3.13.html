@@ -140,7 +140,7 @@
 
       // const timer = setInterval(() => {
       //   elapsed++
-      //   if (elapsed >= getCurrentInterval()) {
+      //   if (elapsed === getCurrentInterval()) {
       //     fn()
       //     count++
       //     elapsed = 0
@@ -149,7 +149,7 @@
 
       return {
         stop() {
-          clearInterval(timerId)
+          clearTimeout(timerId)
           // clearInterval(timer)
         },
       }
