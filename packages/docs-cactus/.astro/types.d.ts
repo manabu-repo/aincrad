@@ -305,6 +305,20 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
+"@25.3.13:InterviewCodding/index.mdx": {
+	id: "@25.3.13:InterviewCodding/index.mdx";
+  slug: "25313interviewcodding";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
+"@25.3.14:MicroFront/index.mdx": {
+	id: "@25.3.14:MicroFront/index.mdx";
+  slug: "25314microfront";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 "@25.3.3:TSUtilityTypes/index.mdx": {
 	id: "@25.3.3:TSUtilityTypes/index.mdx";
   slug: "2533tsutilitytypes";
