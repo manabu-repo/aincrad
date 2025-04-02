@@ -111,6 +111,28 @@ function quickSort(arr: number[]): number[] {
 }
 ```
 
+```typescript
+function quickSort(arr: number[]): number[] {
+    if (arr.length <= 1) {
+        return arr;
+    }
+
+    const pivot = arr[0];
+    const left: number[] = [];
+    const right: number[] = [];
+
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < pivot) {
+            left.push(arr[i]);
+        } else {
+            right.push(arr[i]);
+        }
+    }
+
+    return [...quickSort(left), pivot, ...quickSort(right)];
+}
+```
+
 > 原理：选择一个基准元素，将数组分为两部分，一部分小于基准元素，一部分大于基准元素，然后递归地对这两部分进行快速排序。
 
 // 测试用例
