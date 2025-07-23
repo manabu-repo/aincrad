@@ -1,0 +1,137 @@
+---
+title: "React Store"
+description: "(`Redux`, `Provider`, `Reducer`, `Jotai`, `Zustand`)"
+publishDate: "23 July 2025"
+updatedDate: "23 July 2025"
+tags: ["post"]
+---
+
+## `React Store`
+
+### `Provider`
+
+使用 `Provider` 实现一个简易的全局状态管理, 在根上包裹后全局使用。
+
+```tsx
+// 在context目录下实现globalStateContext给外部全局使用
+// @/context/globalStateContext
+import React, { createContext, useContext, useState, useMemo } from 'react';
+
+// 创建上下文对象
+interface GlobalState {
+  count: number;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+  user: { name: string };
+  setUser: React.Dispatch<React.SetStateAction<{ name: string }>>;
+}
+
+const GlobalStateContext = createContext<GlobalState | undefined>(undefined);
+
+// 创建全局状态提供者
+export const GlobalStateProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+  // 定义所有全局状态
+  const [count, setCount] = useState(0);
+  const [theme, setTheme] = useState('light');
+  const [user, setUser] = useState({ name: 'Guest' });
+
+  // 将所有状态和方法合并到一个对象中
+  const globalState = useMemo(() => {
+    count, setCount,
+    theme, setTheme,
+    user, setUser
+  }, [count, theme, user])
+
+  return (
+    <GlobalStateContext.Provider value={globalState}>
+      {children}
+    </GlobalStateContext.Provider>
+  );
+};
+
+// 创建自定义钩子访问全局状态
+export const useGlobalState = () => {
+  const context = useContext(GlobalStateContext);
+  if (!context) {
+    throw new Error('useGlobalState must be used within a GlobalStateProvider');
+  }
+  return context;
+};
+```
+
+在入口文件(`main.tsx`/`app.tsx`)进行包裹:
+
+```tsx
+import { GlobalStateProvider } from '@/context/globalStateContext'
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+  <React.StrictMode>
+    <GlobalStateProvider>
+      <App />
+    </GlobalStateProvider>
+  </React.StrictMode>,
+)
+```
+
+这样，在 `APP` 组件下就能实现跨层级组件通信, 如在任意组件可以轻松获取到 `globalStateContext` 中的值：
+
+```tsx
+import { useGlobalState } from '@/context/globalStateContext'
+
+function AnyComponent() {
+  const { user, setUser } = useGlobalState()
+
+  return (<>{user}</>)
+}
+```
+
+同时，更常见的场景中我们会见到这样使用：
+
+```tsx
+// 主题 Provider
+function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState('light');
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+// 任意子组件使用主题
+function ThemedButton() {
+  const { theme, setTheme } = useTheme();
+  return (
+    <button style={{
+      background: theme === 'light' ? '#fff' : '#333',
+      color: theme === 'light' ? '#333' : '#fff'
+    }}>
+      当前主题：{theme}
+    </button>
+  );
+}
+```
+
+注意事项：
+
+1. 避免过度使用
+  - 不要把所有状态都放入 `Provider`, 局部状态应该使用组件自身的 `useState`
+  - 过多的全局状态会导致组件不必要的重新渲染
+2. 性能优化
+  - 共享对象时，使用 `useMemo` 缓存，避免每次渲染创建新对象
+  - 对于频繁变化的数据，可拆分多个 `Provider` 隔离渲染
+3. 可以嵌套多个不同的 `Provider`，彼此独立
+
+```tsx
+<ThemeProvider>
+  <UserProvider>
+    <App />
+  </UserProvider>
+</ThemeProvider>
+```
+
+### Redux
+
+相对而言，`Redux` 更重的多，不够直觉，但在维护一些项目的过程中也是不得不面对的坎。
