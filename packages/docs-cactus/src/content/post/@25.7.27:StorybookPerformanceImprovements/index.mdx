@@ -1,0 +1,155 @@
+---
+title: "Storybook Performance Improvements"
+description: "Debug optimization strategy, Like disable unnecessary addons and so on"
+publishDate: "27 July 2025"
+updatedDate: "27 July 2025"
+tags: ["post"]
+---
+
+## `Storybook Performance Improvements`
+
+### 构建优化
+
+1. 精简依赖导入
+  - **动态加载**: 使用异步导入 `import()` 拆分大型组件库
+  - **按需加载**：在 `.storybook/main.ts` 中配置按需加载规则, 避免全量扫描
+
+```tsx
+// 仅加载必要的组件
+stories: [
+  '../src/components/Button/*.stories.ts',
+  // 避免使用 '../src/**/*.stories.ts'
+],
+```
+
+2. 优化 `Webpack/Vite` 配置
+
+```tsx
+// .storybook/main.ts
+module.exports = {
+  webpackFinal: (config) => {
+    // 1. 排除 node_modules 中不需要处理的库
+    config.externals = ['lodash', 'moment'];
+
+    // 2. 启用持久缓存
+    config.cache = { type: 'filesystem' };
+
+    // 3. 关闭 sourceMap（开发时按需开启）
+    config.devtool = 'cheap-module-source-map';
+
+    return config;
+  }
+};
+```
+
+3. 升级构建工具
+  - 使用 `Vite` 替换` Webpack`( `Storybook 6.5+` 支持)
+
+### `Storybook` 配置优化
+
+1. 关闭非必要插件
+
+```tsx
+// .storybook/main.ts
+addons: [
+  '@storybook/addon-essentials', // 仅保留核心插件
+  // 移除性能消耗大的插件如 '@storybook/addon-docs'
+],
+```
+
+2. 启动时增加 `Node.ts` 内存限制
+
+```bash
+NODE_OPTIONS="--max-old-space-size=8192" start-storybook
+```
+
+3. 增量编译
+  - 启用文件系统缓存
+
+```tsx
+// .storybook/main.ts
+module.exports = {
+  core: { builder: 'webpack5' }, // Webpack 5 有更优缓存
+};
+```
+
+4. 限制文件监听范围
+
+```tsx
+// .storybook/main.ts
+module.exports = {
+  // 避免监听 node_modules 和构建输出目录
+  webpackFinal: (config) => {
+    config.watchOptions = {
+      ignored: /node_modules|dist|build/,
+    };
+    return config;
+  }
+};
+```
+
+### 调试工具
+
+1. 性能分析
+  - `Webpack` 分析
+
+```bash
+npx storybook --webpack-stats-json
+npx webpack-bundle-analyzer storybook-static
+```
+
+  - `Chrome DevTools Performance` 面板记录耗时操作
+
+2. 插件检测
+  - 使用 `why-is-node-running` 检测阻塞进程
+
+```bash
+npx why-is-node-running
+```
+
+### 禁用 `HMR` (按需选择)
+
+1. 在 `package.json` 添加手动启动刷新脚本
+
+```json
+{
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "storybook:manual": "STORYBOOK_HMR=false npm run storybook",
+    "build-storybook": "build-storybook"
+  }
+}
+```
+
+2. `.storybook/main.ts` 配置
+  - `Vite` 配置
+
+```tsx
+// .storybook/main.ts
+export default {
+  async viteFinal(config) {
+    config.server.hmr = false;
+    config.server.watch = {
+      usePolling: false,
+    };
+    return config;
+  }
+};
+```
+
+  - `Webpack` 配置
+
+```tsx
+// .storybook/main.ts
+module.exports = {
+  webpackFinal: (config) => {
+    config.devServer = {
+      ...config.devServer,
+      hot: false,
+      liveReload: false,
+      webSocketServer: false,
+    };
+    return config;
+  }
+};
+```

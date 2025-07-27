@@ -347,6 +347,20 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
+"@25.7.23:ReactStore/index.mdx": {
+	id: "@25.7.23:ReactStore/index.mdx";
+  slug: "25723reactstore";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
+"@25.7.27:StorybookPerformanceImprovements/index.mdx": {
+	id: "@25.7.27:StorybookPerformanceImprovements/index.mdx";
+  slug: "25727storybookperformanceimprovements";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
 };
 "post-default": {
 "cover-image/index.md": {
