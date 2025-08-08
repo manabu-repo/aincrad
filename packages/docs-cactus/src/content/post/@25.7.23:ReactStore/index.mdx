@@ -1,8 +1,8 @@
 ---
 title: "React Store"
-description: "(`Redux`, `Provider`, `Reducer`, `Jotai`, `Zustand`)"
+description: "Use Redux, Provider, Reducer, Jotai, Zustand"
 publishDate: "23 July 2025"
-updatedDate: "23 July 2025"
+updatedDate: "28 July 2025"
 tags: ["post"]
 ---
 
@@ -11,6 +11,8 @@ tags: ["post"]
 ### `Provider`
 
 使用 `Provider` 实现一个简易的全局状态管理, 在根上包裹后全局使用。
+
+依赖于 `createContext` 和 `useContext` 的封装和使用。
 
 ```tsx
 // 在context目录下实现globalStateContext给外部全局使用
@@ -134,4 +136,4 @@ function ThemedButton() {
 
 ### Redux
 
-相对而言，`Redux` 更重的多，不够直觉，但在维护一些项目的过程中也是不得不面对的坎。
+相对而言，`Redux` 更重的多，不够直觉，但在维护一些项目的过程中也是需要面对。
