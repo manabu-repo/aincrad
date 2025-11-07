@@ -1,0 +1,41 @@
+---
+title: "Configuration Remote Management"
+description: "Regarding Git configuration file remote synchronization and collaboration management"
+publishDate: "7 July 2025"
+updatedDate: "7 July 2025"
+tags: ["post"]
+---
+
+## `Configuration Remote Management`
+
+关于本地配置文件（例如 `.env`、 `.npmrc` 类型文件）的 `Git` 远程同步及协作管理，需确保：
+
+1. 安全性：敏感信息不同步到仓库
+2. 便利性：自动化脚本更新/本地示例文件/内容自同步
+3. 协作性：标准化的设置流程，减少团队间的配置问题
+4. 维护性：避免频繁的更新提交
+
+基于以上原因，推荐以下流程：
+
+1. 将配置文件( 如：`.env` )加入 `.gitignore`
+2. 创建模版文件 `.env.example`
+3. 更新 `README` 文档，增加设置说明
+
+```md
+## Setup
+
+1. Take a copy of `.env.example` and re-name to `.env`
+2. Get your [TMDB](https://developers.themoviedb.org/3) API key
+3. Enter the details into the `.env` file
+4. Start the dev server with the following scripts
+```
+
+4. 初次设置及团队约定
+
+```shell
+git clone <repository>
+cd <project>
+cp .npmrc.example .npmrc
+pnpm aws  # 获取最新token
+pnpm install
+```
