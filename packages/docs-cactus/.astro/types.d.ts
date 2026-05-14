@@ -298,65 +298,79 @@ declare module 'astro:content' {
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".md"] };
-"@25.3.10:CommonAlgorithms/index.mdx": {
-	id: "@25.3.10:CommonAlgorithms/index.mdx";
-  slug: "25310commonalgorithms";
+"@25.03.03:TSUtilityTypes/index.mdx": {
+	id: "@25.03.03:TSUtilityTypes/index.mdx";
+  slug: "250303tsutilitytypes";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.3.13:InterviewCodding/index.mdx": {
-	id: "@25.3.13:InterviewCodding/index.mdx";
-  slug: "25313interviewcodding";
+"@25.03.04:BinaryTreeTraversal/index.mdx": {
+	id: "@25.03.04:BinaryTreeTraversal/index.mdx";
+  slug: "250304binarytreetraversal";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.3.14:MicroFront/index.mdx": {
-	id: "@25.3.14:MicroFront/index.mdx";
-  slug: "25314microfront";
+"@25.03.06:PointVue/index.mdx": {
+	id: "@25.03.06:PointVue/index.mdx";
+  slug: "250306pointvue";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.3.3:TSUtilityTypes/index.mdx": {
-	id: "@25.3.3:TSUtilityTypes/index.mdx";
-  slug: "2533tsutilitytypes";
+"@25.03.07:PointReact/index.mdx": {
+	id: "@25.03.07:PointReact/index.mdx";
+  slug: "250307pointreact";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.3.4:BinaryTreeTraversal/index.mdx": {
-	id: "@25.3.4:BinaryTreeTraversal/index.mdx";
-  slug: "2534binarytreetraversal";
+"@25.03.10:CommonAlgorithms/index.mdx": {
+	id: "@25.03.10:CommonAlgorithms/index.mdx";
+  slug: "250310commonalgorithms";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.3.6:PointVue/index.mdx": {
-	id: "@25.3.6:PointVue/index.mdx";
-  slug: "2536pointvue";
+"@25.03.13:InterviewCodding/index.mdx": {
+	id: "@25.03.13:InterviewCodding/index.mdx";
+  slug: "250313interviewcodding";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.3.7:PointReact/index.mdx": {
-	id: "@25.3.7:PointReact/index.mdx";
-  slug: "2537pointreact";
+"@25.03.14:MicroFront/index.mdx": {
+	id: "@25.03.14:MicroFront/index.mdx";
+  slug: "250314microfront";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.7.23:ReactStore/index.mdx": {
-	id: "@25.7.23:ReactStore/index.mdx";
-  slug: "25723reactstore";
+"@25.07.23:ReactStore/index.mdx": {
+	id: "@25.07.23:ReactStore/index.mdx";
+  slug: "250723reactstore";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
 } & { render(): Render[".mdx"] };
-"@25.7.27:StorybookPerformanceImprovements/index.mdx": {
-	id: "@25.7.27:StorybookPerformanceImprovements/index.mdx";
-  slug: "25727storybookperformanceimprovements";
+"@25.07.27:StorybookPerformanceImprovements/index.mdx": {
+	id: "@25.07.27:StorybookPerformanceImprovements/index.mdx";
+  slug: "250727storybookperformanceimprovements";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
+"@25.11.07:ConfigRemoteManagement/index.mdx": {
+	id: "@25.11.07:ConfigRemoteManagement/index.mdx";
+  slug: "251107configremotemanagement";
+  body: string;
+  collection: "post";
+  data: InferEntrySchema<"post">
+} & { render(): Render[".mdx"] };
+"@26.05.14:CountrySupportRolloutReflections/index.mdx": {
+	id: "@26.05.14:CountrySupportRolloutReflections/index.mdx";
+  slug: "260514countrysupportrolloutreflections";
   body: string;
   collection: "post";
   data: InferEntrySchema<"post">
